@@ -9,8 +9,8 @@ include("dbconfig.php");
             $dataset = [];
 
             while($row = $stmt->fetch_assoc()){
-                $dataset[] = $row['id']." ".
+                $dataset[] = $row;
             };        
-            echo json_encode($users);
+            echo json_encode($dataset);
             
 ?>
