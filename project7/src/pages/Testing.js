@@ -2,6 +2,16 @@ import React from 'react'
 
 export default function Testing() {
   return (
-    <div>Testing</div>
+    <div id="content" className="no-bottom no-top">
+
+            
+            
+
+            
+            
+
+            
+
+        </div>
   )
 }
