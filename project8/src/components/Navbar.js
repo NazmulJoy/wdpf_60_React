@@ -42,7 +42,7 @@ const Navbar = () => {
                         </button>
                     </div>
                     <div className="logo">
-                        <Link to="/"><img src="/assets/img/logo-2.png" alt="logo" /></Link>
+                        <Link to="/"><img src="/assets/img/tclk.jpg" alt="logo" /></Link>
                     </div>
                     <div className="nav-right-part nav-right-part-mobile">
                         <Link className="signin-btn" to="/signin">Sign In</Link>

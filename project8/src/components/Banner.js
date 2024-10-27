@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
   return (
-    <div className="banner-area banner-area-2" style={{ backgroundImage: "url('/assets/img/banner/4.png')" }}>
+    <div className="banner-area banner-area-2" style={{ backgroundImage: "url(assets/img/banner/5.png)" }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-8 align-self-center">
