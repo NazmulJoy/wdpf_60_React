@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function About() {
+export default function Testimonials() {
+  useEffect(() => {
+
+    if (window.$ && window.$(".owl-carousel").owlCarousel) {
+      window.$(".testimonial-slider-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        responsive: {
+          0: { items: 1 },      
+          600: { items: 2 },   
+          1000: { items: 3 },   
+        },
+      });
+    }
+  }, []);
+
   return (
     <>
       {/* breadcrumb start */}
@@ -347,9 +364,9 @@ export default function About() {
                 </div>
                 <div className="details">
                   <h4>
-                    <Link to="#">Pritom Barman</Link>
+                  <Link to="#">Iqbal Hossain</Link>
                   </h4>
-                  <span>AI Expert</span>
+                  <span>Java Expert</span>
                 </div>
               </div>
             </div>
@@ -389,9 +406,9 @@ export default function About() {
                 </div>
                 <div className="details">
                   <h4>
-                    <Link to="#">Pritom Barman</Link>
+                  <Link to="#">Shafique Ahmed</Link>
                   </h4>
-                  <span>AI Expert</span>
+                  <span>DM Expert</span>
                 </div>
               </div>
             </div>
@@ -510,7 +527,7 @@ export default function About() {
                     <img src="assets/img/it65.png" alt="img" />
                   </div>
                   <div className="media-body align-self-center">
-                  <h6>Shila Akter</h6>
+                    <h6>Shila Akter</h6>
                     <p>Graphic Design</p>
                   </div>
                 </div>

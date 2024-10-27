@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function Instructor() {
+export default function Testimonials() {
+  useEffect(() => {
+
+    if (window.$ && window.$(".owl-carousel").owlCarousel) {
+      window.$(".testimonial-slider-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        responsive: {
+          0: { items: 1 },      
+          600: { items: 2 },   
+          1000: { items: 3 },   
+        },
+      });
+    }
+  }, []);
+
   return (
     <>
       {/* breadcrumb start */}
@@ -191,9 +208,9 @@ export default function Instructor() {
                 </div>
                 <div className="details">
                   <h4>
-                    <Link to="#">Pritom Barman</Link>
+                    <Link to="#">Iqbal Hossain</Link>
                   </h4>
-                  <span>AI Expert</span>
+                  <span>Java Expert</span>
                 </div>
               </div>
             </div>
@@ -233,9 +250,9 @@ export default function Instructor() {
                 </div>
                 <div className="details">
                   <h4>
-                    <Link to="#">Pritom Barman</Link>
+                    <Link to="#">Shafique Ahmed</Link>
                   </h4>
-                  <span>AI Expert</span>
+                  <span>DM Expert</span>
                 </div>
               </div>
             </div>
@@ -250,18 +267,19 @@ export default function Instructor() {
               className="counter-area-inner pd-top-110 pd-bottom-120"
               style={{ backgroundImage: "url(assets/img/other/1.png)" }}
             >
-              <div className="row">
-                <div className="col-lg-8 mb-5 mb-lg-0">
-                  <div className="section-title mb-0">
-                    <h6 className="sub-title right-line">Funfact</h6>
-                    <h2 className="title">Strength in Numbers</h2>
-                    <p className="content pb-3">
-                      The quick, brown fox jumps over a lazy dog. DJs flock by
-                      when MTV ax quiz prog. Junk MTV quiz graced by fox whelps.
-                      Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for
-                      quick jigs vex! Fox nymphs grab quick-jived waltz. Brick
-                      quiz whangs jumpy
-                    </p>
+               <div className="row">
+              <div className="col-lg-8 mb-5 mb-lg-0">
+                <div className="section-title mb-0">
+                  <h6 className="sub-title right-line">Our Achievements</h6>
+                  <h2 className="title">Proven Success</h2>
+                  <p className="content pb-3">
+                    At TCLK, we pride ourselves on our impressive achievements
+                    and the vibrant community we've built. Here are some quick
+                    facts that highlight our journey: Over 5,000 students
+                    trained, 200+ expert instructors, 95% job placement rate,
+                    300+ successful projects, 50+ industry partnerships, Join us
+                    and be a part of our growing success story!
+                  </p>
                     <div className="btn-counter bg-base mt-4">
                       <h3 className="left-val align-self-center">
                         <span className="counter">2.4</span>k+
@@ -363,7 +381,7 @@ export default function Instructor() {
               </p>
               <div className="media testimonial-author">
                 <div className="media-left">
-                  <img src="ing.png" alt="img" />
+                  <img src="assets/img/it65.png" alt="img" />
                 </div>
                 <div className="media-body align-self-center">
                   <h6>Shila Akter</h6>
@@ -379,7 +397,7 @@ export default function Instructor() {
               </span>
               <p>
                 "Incredible course on Data Science Fundamentals! Truly a
-                valuable experience!
+                valuable and great experience anyone can have! 
               </p>
               <div className="media testimonial-author">
                 <div className="media-left">

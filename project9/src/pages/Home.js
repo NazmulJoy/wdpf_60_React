@@ -1,7 +1,24 @@
-import React from "react";
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Testimonials() {
+  useEffect(() => {
+
+    if (window.$ && window.$(".owl-carousel").owlCarousel) {
+      window.$(".testimonial-slider-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        responsive: {
+          0: { items: 1 },      
+          600: { items: 2 },   
+          1000: { items: 3 },   
+        },
+      });
+    }
+  }, []);
+
   return (
     <>
       {/*<!-- banner start -->*/}
@@ -767,7 +784,7 @@ export default function Home() {
                 </span>
                 <p>
                   "Incredible course on Data Science Fundamentals! Truly a
-                  valuable experience!
+                  valuable and great experience anyone can have! 
                 </p>
                 <div className="media testimonial-author">
                   <div className="media-left">

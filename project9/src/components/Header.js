@@ -11,10 +11,11 @@ export default function Header() {
                 <div className="col-md-8 text-md-left text-center">
                     <ul>
                         <li>
-                            <p><i className="fa fa-map-marker"></i> 2072 Pinnickinick Street, WA 98370</p>
+                            <p><i className="fa fa-map-marker"></i> Dhaka Metro Scout
+                            Bhaban(1st Floor), 54, Inner Circular Road, Dhaka-1000</p>
                         </li>
                         <li>
-                            <p><i className="fa fa-envelope-o"></i> info@website.com</p>
+                            <p><i className="fa fa-envelope-o"></i> TCLK@gmail.com</p>
                         </li>
                     </ul>
                 </div>
@@ -60,8 +61,8 @@ export default function Header() {
                 </ul>
             </div>
             <div className="nav-right-part nav-right-part-desktop style-black">
-                <Link className="signin-btn" to="/signin">Sign In</Link>
-                <Link className="btn btn-base" to="/blog">Sign Up</Link>
+                <Link className="signin-btn" to="sign-in">Sign In</Link>
+                <Link className="btn btn-base" to="sign-up">Sign Up</Link>
                 <Link className="search-bar" to="#"><i className="fa fa-search"></i></Link>
             </div>
         </div>
