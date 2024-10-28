@@ -9,10 +9,12 @@ import Instructor from './pages/Instructor';
 import Gallery from './pages/Gallery';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <>
+    <AuthProvider>
       <BrowserRouter>
       <ScrollToTop />
       <Routes>
@@ -24,10 +26,11 @@ function App() {
           <Route path='/instructor' element={<Instructor/> }></Route>
           <Route path='/gallery' element={<Gallery/> }></Route>
           <Route path='/sign-up' element={<SignUp/> }></Route>
-          <Route path='/sign-in' element={<SignIn/> }></Route>
+          <Route path="/signin" element={<SignIn />} />
         </Route>
       </Routes>
   </BrowserRouter>
+  </AuthProvider>
     </>
    
   );

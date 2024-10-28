@@ -158,8 +158,8 @@ export default function Footer() {
       </div>
     </footer>
     {/*<!-- back to top area start -->*/}
-    <div class="back-to-top">
-      <span class="back-top"><i class="fa fa-angle-up"></i></span>
+    <div className="back-to-top">
+      <span className="back-top"><i className="fa fa-angle-up"></i></span>
     </div>
     {/*<!-- back to top area end -->*/}
     </>

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from '../AuthContext';
 
 export default function SignIn() {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -18,21 +21,43 @@ export default function SignIn() {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Replace with your login logic
-      const isAuthenticated = formData.email === "test@example.com" && formData.password === "password";
+    setError("");
 
-      if (isAuthenticated) {
-        navigate("/dashboard"); // Redirect to dashboard or desired page on successful login
-      } else {
-        setError("Invalid email or password.");
-      }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
+    if (!validateEmail(formData.email)) {
+        setError("Please enter a valid email address.");
+        return;
     }
+
+    setLoading(true);
+    try {
+        const response = await axios.post("http://localhost/TCLK/rlogin.php", formData);
+
+        if (response.data.success) {
+            const { token, name } = response.data;
+            
+            localStorage.setItem("token", token);
+            localStorage.setItem("username", name);
+            
+            
+            login({ token, name });
+
+            navigate("/");
+        } else {
+            setError(response.data.error); 
+        }
+    } catch (error) {
+        console.error("Login error:", error.response || error.message); 
+        setError("Email or Password is invalid.");
+    } finally {
+        setLoading(false);
+    }
+};
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
   };
 
   return (
@@ -44,7 +69,9 @@ export default function SignIn() {
             <div className="section-title mb-0 text-center">
               <h2 className="page-title">Sign In</h2>
               <ul className="page-list">
-                <li><Link to="/">Home</Link></li>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
                 <li>Sign In</li>
               </ul>
             </div>
@@ -91,14 +118,16 @@ export default function SignIn() {
                     </div>
                   </div>
                   <div className="col-12 mb-4">
-                    <button type="submit" className="btn btn-base w-100">Sign In</button>
+                    <button
+                      type="submit"
+                      className="btn btn-base w-100"
+                      disabled={loading}
+                    >
+                      {loading ? "Signing In..." : "Sign In"}
+                    </button>
                   </div>
                   <div className="col-12">
- 
-                    <span style={{ marginRight: '10px' }}>Dont have account?</span>
-                    <Link to="/sign-up">
-                      <strong>Signup</strong>
-                    </Link>
+                    <p className="text-center">Don’t have an account? <Link to="/signup">Sign Up</Link></p>
                   </div>
                 </div>
               </form>
