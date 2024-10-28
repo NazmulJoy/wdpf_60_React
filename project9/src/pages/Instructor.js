@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import axios from "axios"
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Testimonials() {
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-
+    getUsers();
     if (window.$ && window.$(".owl-carousel").owlCarousel) {
       window.$(".testimonial-slider-2").owlCarousel({
         loop: true,
@@ -18,7 +20,12 @@ export default function Testimonials() {
       });
     }
   }, []);
-
+  function getUsers() {
+    axios.get('http://localhost/TCLK/rteam.php').then(function(response) {
+        console.log(response.data);
+        setUsers(response.data);
+    });
+}
   return (
     <>
       {/* breadcrumb start */}
@@ -46,10 +53,11 @@ export default function Testimonials() {
       <div className="team-area pd-top-120 pd-bottom-90">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6">
+          {users.map((user, key) =>
+            <div className="col-lg-4 col-md-6" key={key}>
               <div className="single-team-inner">
                 <div className="thumb">
-                  <img src="assets/img/sir1.png" alt="img" />
+                <img src={`assets/img/${user.image}`} alt="img" />
                   <div className="social-wrap">
                     <div className="social-wrap-inner">
                       <Link className="social-share" to="#">
@@ -82,180 +90,14 @@ export default function Testimonials() {
                 </div>
                 <div className="details">
                   <h4>
-                    <Link to="#">Syed Ziaul Habib</Link>
+                    <Link to="#">{user.name}</Link>
                   </h4>
-                  <span>WEB Expert</span>
+                  <span>{user.subject}</span>
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-team-inner">
-                <div className="thumb">
-                  <img src="assets/img/sir2.png" alt="img" />
-                  <div className="social-wrap">
-                    <div className="social-wrap-inner">
-                      <Link className="social-share" to="#">
-                        <i className="fa fa-share-alt"></i>
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-facebook"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-twitter"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-pinterest"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-linkedin"></i>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="details">
-                  <h4>
-                    <Link to="#">Anisul Haque</Link>
-                  </h4>
-                  <span>GAV Expert</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-team-inner">
-                <div className="thumb">
-                  <img src="assets/img/sir3.png" alt="img" />
-                  <div className="social-wrap">
-                    <div className="social-wrap-inner">
-                      <Link className="social-share" to="#">
-                        <i className="fa fa-share-alt"></i>
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-facebook"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-twitter"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-pinterest"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-linkedin"></i>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="details">
-                  <h4>
-                    <Link to="#">Pritom Barman</Link>
-                  </h4>
-                  <span>AI Expert</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-team-inner">
-                <div className="thumb">
-                  <img src="assets/img/sir4.png" alt="img" />
-                  <div className="social-wrap">
-                    <div className="social-wrap-inner">
-                      <Link className="social-share" to="#">
-                        <i className="fa fa-share-alt"></i>
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-facebook"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-twitter"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-pinterest"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-linkedin"></i>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="details">
-                  <h4>
-                    <Link to="#">Iqbal Hossain</Link>
-                  </h4>
-                  <span>Java Expert</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-team-inner">
-                <div className="thumb">
-                  <img src="assets/img/sir5.png" alt="img" />
-                  <div className="social-wrap">
-                    <div className="social-wrap-inner">
-                      <Link className="social-share" to="#">
-                        <i className="fa fa-share-alt"></i>
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-facebook"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-twitter"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-pinterest"></i>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fa fa-linkedin"></i>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="details">
-                  <h4>
-                    <Link to="#">Shafique Ahmed</Link>
-                  </h4>
-                  <span>DM Expert</span>
-                </div>
-              </div>
-            </div>
+            )}
+            
           </div>
         </div>
         {/* team area end */}

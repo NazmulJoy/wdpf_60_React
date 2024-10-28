@@ -1,7 +1,17 @@
-import React from "react";
+import axios from "axios"
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 export default function Course() {
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers();
+    }, []);
+    function getUsers() {
+        axios.get('http://localhost/TCLK/rcourses.php').then(function(response) {
+            console.log(response.data);
+            setUsers(response.data);
+        });
+    }
   return (
     <>
       {/* breadcrumb start */}
@@ -31,29 +41,30 @@ export default function Course() {
           <div className="row">
             <div className="col-lg-8 order-lg-12">
               <div className="row">
-                <div className="col-md-6">
+              {users.map((user, key) =>
+                <div className="col-md-6" key={key}>
                   <div className="single-course-inner">
                     <div className="thumb">
-                      <img src="assets/img/web2.jpeg" alt="img" />
+                    <img src={`assets/img/${user.image}`} alt="img" />
                     </div>
                     <div className="details">
                       <div className="details-inner">
                         <div className="emt-user"></div>
                         <h6>
-                          <Link to="course-details.php">Web Development</Link>
+                          <Link to="course-details.php">{user.title}</Link>
                         </h6>
                       </div>
                       <div className="emt-course-meta">
                         <div className="row">
                           <div className="col-6">
                             <div className="rating">
-                              <i className="fa fa-star"></i> 4.3
-                              <span>(23)</span>
+                              <i className="fa fa-star"></i> {user.rating}
+                              <span>({user.total_reviews})</span>
                             </div>
                           </div>
                           <div className="col-6">
                             <div className="price text-right">
-                              Price: <span>৳6400.00</span>
+                              Price: <span><b>৳</b>{user.price}</span>
                             </div>
                           </div>
                         </div>
@@ -61,240 +72,7 @@ export default function Course() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img
-                        src="assets/img/Mobile-App-Development0.-fotor-202405289716.png"
-                        alt="img"
-                      />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Mobile App Development
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.3
-                              <span>(23)</span>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="price text-right">
-                              Price: <span>৳5400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img src="assets/img/java2.jpeg" alt="img" />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Mastering Java for Professionals
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.9
-                              <span>(73)</span>
-                            </div>
-                          </div>
-                          <div className="col-lg-6">
-                            <div className="price text-right">
-                              Price: <span>৳7400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img
-                        src="assets/img/Data-science-768x432-fotor-2024052891129.png"
-                        alt="img"
-                      />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Data Science Fundamentals
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.8
-                              <span>(53)</span>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="price text-right">
-                              Price: <span>৳6400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img
-                        src="assets/img/Digital-fotor-2024052891224.png"
-                        alt="img"
-                      />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">Digital Marketing</Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.5
-                              <span>(21)</span>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="price text-right">
-                              Price: <span>৳3400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img
-                        src="assets/img/AI-fotor-2024052891329.png"
-                        alt="img"
-                      />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Artificial Intelligence
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.4
-                              <span>(20)</span>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="price text-right">
-                              Price: <span>৳5400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img src="assets/img/Promo2.jpeg" alt="img" />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Cloud Computing Essentials
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.3
-                              <span>(23)</span>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="price text-right">
-                              Price: <span>৳5400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="single-course-inner">
-                    <div className="thumb">
-                      <img src="assets/img/Promo.jpeg" alt="img" />
-                    </div>
-                    <div className="details">
-                      <div className="details-inner">
-                        <div className="emt-user"></div>
-                        <h6>
-                          <Link to="course-details.php">
-                            Cybersecurity Fundamentals
-                          </Link>
-                        </h6>
-                      </div>
-                      <div className="emt-course-meta">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="rating">
-                              <i className="fa fa-star"></i> 4.9
-                              <span>(73)</span>
-                            </div>
-                          </div>
-                          <div className="col-lg-6">
-                            <div className="price text-right">
-                              Price: <span>৳5400.00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                 )}
               </div>
               <nav className="td-page-navigation">
                 <ul className="pagination">
