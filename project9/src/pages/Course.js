@@ -1,60 +1,59 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from '../AuthContext'; // Adjust the path as necessary
+import { useAuth } from '../AuthContext'; 
 
 export default function Course() {
   const [users, setUsers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const { userId, username } = useAuth(); // Get user ID and username from Auth context
+  const { userId, username } = useAuth(); 
 
   useEffect(() => {
     getUsers();
   }, []);
 
-  // Fetch courses from the backend
+
   function getUsers() {
     axios.get('http://localhost/TCLK/rcourses.php')
       .then((response) => {
         console.log(response.data);
         setUsers(response.data);
       })
-      .catch(error => console.error("Error fetching users:", error)); // Handle fetch errors
+      .catch(error => console.error("Error fetching users:", error)); 
   }
 
-  // Open the modal with the selected course
   const openModal = (user) => {
     setSelectedCourse(user);
     setModalVisible(true);
   };
 
-  // Close the modal
+
   const closeModal = () => {
     setModalVisible(false);
     setSelectedCourse(null);
   };
 
-  // Handle payment submission
+ 
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    formData.append('student_id', userId); // Add student ID
-    formData.append('student_name', username); // Use the correct variable name
-    formData.append('course_id', selectedCourse.id); // Add course ID
-    formData.append('apply_date', new Date().toISOString()); // Set apply date
-    formData.append('status', 'pending'); // Set initial status
-    formData.append('transaction_id', formData.get('transaction_id')); // Get transaction ID
-    formData.append('payment_method', formData.get('payment_method')); // Get payment method
+    formData.append('student_id', userId); 
+    formData.append('student_name', username); 
+    formData.append('course_id', selectedCourse.id); 
+    formData.append('apply_date', new Date().toISOString()); 
+    formData.append('status', 'pending');
+    formData.append('transaction_id', formData.get('transaction_id')); 
+    formData.append('payment_method', formData.get('payment_method')); 
 
     try {
       const response = await axios.post('http://localhost/TCLK/submit_application.php', formData);
-      console.log(response.data); // Handle success response
-      closeModal(); // Close modal on success
+      console.log(response.data); 
+      closeModal(); 
     } catch (error) {
       console.error("Error submitting application:", error);
-      // Handle error (optional: set error state to display to the user)
+      
     }
   };
 

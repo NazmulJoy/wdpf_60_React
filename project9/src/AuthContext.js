@@ -7,7 +7,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [userId, setUserId] = useState(10); // Set static user ID to 10
+  const [userId, setUserId] = useState(10);
   const [username, setUsername] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const storedUsername = localStorage.getItem("username");
     const token = localStorage.getItem("token");
     
-    // Check for stored username and token only (userId is static)
+  
     if (storedUsername && token) {
       setUsername(storedUsername);
       setIsLoggedIn(true);
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   const login = (user) => {
     localStorage.setItem("token", user.token);
     localStorage.setItem("username", user.name);
-    // userId is static, so we do not store it again
+
     setUsername(user.name);
     setIsLoggedIn(true);
   };
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    // userId is static, so no need to clear it
+
     setUsername('');
     setIsLoggedIn(false);
   };

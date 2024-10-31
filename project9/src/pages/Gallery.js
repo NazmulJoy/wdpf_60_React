@@ -1,7 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Testimonials() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+      getUsers();
+  }, []);
+  function getUsers() {
+      axios.get('http://localhost/TCLK/rgallery.php').then(function(response) {
+          console.log(response.data);
+          setUsers(response.data);
+      });
+  }
   useEffect(() => {
 
     if (window.$ && window.$(".owl-carousel").owlCarousel) {
@@ -46,84 +57,21 @@ export default function Testimonials() {
       <div className="team-area pd-top-120 pd-bottom-90">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6">
+          {users.map((user, key) => (
+            <div className="col-lg-4 col-md-6" key={key}>
               <div className="single-gallery-inner">
                 <div className="thumb">
-                  <img src="assets/img/gallery/1.png" alt="img" />
+                <img src={`assets/img/upload/${user.image}`} alt="img" />
                 </div>
                 <div className="details">
-                  <span>Consetetur Sadipscing</span>
+                  <span>{user.title}</span>
                   <h4>
-                    <Link to="#">Furus fermentum </Link>
+                    <Link to="#">{user.description} </Link>
                   </h4>
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-gallery-inner">
-                <div className="thumb">
-                  <img src="assets/img/gallery/2.png" alt="img" />
-                </div>
-                <div className="details">
-                  <span>Consetetur Sadipscing</span>
-                  <h4>
-                    <Link to="#">Sadip fermentum</Link>
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-gallery-inner">
-                <div className="thumb">
-                  <img src="assets/img/gallery/3.png" alt="img" />
-                </div>
-                <div className="details">
-                  <span>Consetetur Sadipscing</span>
-                  <h4>
-                    <Link to="#">Furus fermentum</Link>
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-gallery-inner">
-                <div className="thumb">
-                  <img src="assets/img/gallery/4.png" alt="img" />
-                </div>
-                <div className="details">
-                  <span>Consetetur Sadipscing</span>
-                  <h4>
-                    <Link to="#">Fermentum Cons</Link>
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-gallery-inner">
-                <div className="thumb">
-                  <img src="assets/img/gallery/5.png" alt="img" />
-                </div>
-                <div className="details">
-                  <span>Consetetur Sadipscing</span>
-                  <h4>
-                    <Link to="#">Furus fermentum</Link>
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-gallery-inner">
-                <div className="thumb">
-                  <img src="assets/img/gallery/6.png" alt="img" />
-                </div>
-                <div className="details">
-                  <span>Consetetur Sadipscing</span>
-                  <h4>
-                    <Link to="#">Pscing fermentum </Link>
-                  </h4>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
